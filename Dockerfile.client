@@ -1,0 +1,8 @@
+FROM alpine:latest
+
+RUN apk --no-cache add netcat-openbsd docker
+
+COPY ./client_script.sh /scripts/client_script.sh
+RUN chmod +x /scripts/client_script.sh
+
+CMD ["/scripts/client_script.sh"]

@@ -1,0 +1,4 @@
+FROM alpine:latest
+RUN apk --update --no-cache add netcat-openbsd
+COPY server_script.sh /scripts/server_script.sh
+ENTRYPOINT ["sh", "/scripts/server_script.sh"]

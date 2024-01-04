@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  container_a:
+    image: my_server_image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    networks:
+      - docker2_my_network
+    volumes:
+      - ./dockerfiles:/app
+    command: sh -c "/scripts/server_script.sh"
+
+  container_b:
+    image: my_client_image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    networks:
+      - docker2_my_network
+    volumes:
+      - ./dockerfiles:/app
+    command: sh -c "/scripts/client_script.sh"
+
+networks:
+  docker2_my_network:
+    driver: bridge
+    attachable: true
